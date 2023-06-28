@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     const fetchDistance = async () => {
-      const response = await axios.get('http://192.168.100.16:3000/distance');
+      const response = await axios.get('http://150.162.185.109:3000/distance');
       const lastDistance = response.data[0];
       setDistance(lastDistance);
     };
