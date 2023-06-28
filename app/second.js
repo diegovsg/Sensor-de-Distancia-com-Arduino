@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView } from 'react-native';
 import axios from 'axios';
 
 const SecondScreen = ({ navigation }) => {
@@ -7,7 +7,7 @@ const SecondScreen = ({ navigation }) => {
 
   useEffect(() => {
     const fetchAllDistances = async () => {
-      const response = await axios.get('http://150.162.185.34:3000/distance/all');
+      const response = await axios.get('http://182.168.100.16:3000/distance/all');
       setAllDistances(response.data);
     };
 
@@ -21,18 +21,20 @@ const SecondScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Todos os Dados</Text>
-      {allDistances.length > 0 ? (
-        <View>
-          {allDistances.map((distance, index) => (
-            <View key={index} style={styles.messageContainer}>
-              <Text style={styles.message}>Distância: {distance.distance} cm!</Text>
-              <Text style={styles.date}>Data: {distance.data}</Text>
-            </View>
-          ))}
-        </View>
-      ) : (
-        <Text>Não há dados disponíveis.</Text>
-      )}
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        {allDistances.length > 0 ? (
+          <View>
+            {allDistances.map((distance, index) => (
+              <View key={index} style={styles.messageContainer}>
+                <Text style={styles.message}>Distância: {distance.distance} cm!</Text>
+                <Text style={styles.date}>Data: {distance.data}</Text>
+              </View>
+            ))}
+          </View>
+        ) : (
+          <Text>Não há dados disponíveis.</Text>
+        )}
+      </ScrollView>
       <Button title="Voltar para a tela inicial" onPress={handleGoToHomeScreen} />
     </View>
   );
@@ -51,6 +53,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#007AFF',
+  },
+  scrollViewContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   messageContainer: {
     borderWidth: 2,
