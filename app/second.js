@@ -7,7 +7,7 @@ const SecondScreen = ({ navigation }) => {
 
   useEffect(() => {
     const fetchAllDistances = async () => {
-      const response = await axios.get('http://182.168.100.16:3000/distance/all');
+      const response = await axios.get('http://192.168.100.16:3000/distance/all');
       setAllDistances(response.data);
     };
 
