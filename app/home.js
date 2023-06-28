@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     const fetchDistance = async () => {
-      const response = await axios.get('http://190.168.100.16:3000/distance');
+      const response = await axios.get('http://172.20.10.7:3000/distance');
       const lastDistance = response.data[0];
       setDistance(lastDistance);
     };
@@ -25,6 +25,10 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate('Second');
   };
 
+  const handleGoToThirdScreen = () => {
+    navigation.navigate('Third');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bem-Vindo!</Text>
@@ -37,6 +41,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
       ) : null}
       <Button title="Ir para a outra tela" onPress={handleGoToSecondScreen} />
+      <Button title="Ver gráfico" onPress={handleGoToThirdScreen} />
     </View>
   );
 };

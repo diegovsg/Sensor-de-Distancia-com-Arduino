@@ -5,9 +5,9 @@
 
 WiFiClient client;
 
-const char* ssid = "Juliaa";
-const char* password = "cinzacasa";
-const char* serverName = "http://192.168.100.11:3000/distance";
+const char* ssid = "usuario";
+const char* password = "senha";
+const char* serverName = "http://172.20.10.7:3000/distance";
 const int trig = 12;
 const int echo = 13;
 const int LED = 14;
@@ -64,7 +64,7 @@ void loop() {
   }
   delay(800);
 
-  if (client.connect("192.168.100.11", 3000)) {
+  if (client.connect("172.20.10.7", 3000)) {
     Serial.println("Conectado ao servidor");
 
     HTTPClient http;
